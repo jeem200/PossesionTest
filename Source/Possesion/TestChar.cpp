@@ -38,6 +38,11 @@ void ATestChar::Tick(float DeltaTime)
 void ATestChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis("Forward",this,&ATestChar::MoveForward);
+	PlayerInputComponent->BindAxis("Right", this, &ATestChar::MoveRight);
+	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ATestChar::PressSpace);
 
 }
 

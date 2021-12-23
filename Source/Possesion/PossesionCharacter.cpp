@@ -291,6 +291,10 @@ void APossesionCharacter::CheckForPawn()
 
 
 		}
+		else 
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 12.f, FColor::White, TEXT("No Actor"));
+		}
 				
 
 
@@ -315,7 +319,7 @@ bool APossesionCharacter::TraceLine(FHitResult& HitResult)
 
 		params.AddIgnoredActor(this);
 
-		return GetWorld()->LineTraceSingleByObjectType(HitResult,ViewPortLocation,ViewPortRoation.Vector()*200,FCollisionObjectQueryParams(ECollisionChannel::ECC_Pawn),params);
+		return GetWorld()->LineTraceSingleByChannel(HitResult,ViewPortLocation,ViewPortRoation.Vector()*200,ECollisionChannel::ECC_GameTraceChannel1,params);
 	}
 
 	return false;
